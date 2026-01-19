@@ -1,4 +1,5 @@
 {
+  "description": "Concept structure for Firebase Security Rules, demonstrating user-level authorization and role-based access control (RBAC) to protect sensitive administrative data and private user records.",
   "rules": {
     "users": {
       "$uid": {
