@@ -1,28 +1,19 @@
 {
   "rules": {
-    // --- Authentication and User Data Integrity ---
     "users": {
-      // Rule 1: A user can only read their own profile data.
       "$uid": {
         ".read": "auth != null && auth.uid === $uid",
-        // Rule 2: A user can only write/update their own profile data.
         ".write": "auth != null && auth.uid === $uid"
       }
     },
 
-    // --- Protected Content Access ---
     "admin_config": {
-      // Rule 3: ONLY users with the 'admin' claim in their token can read sensitive configurations.
       ".read": "auth != null && auth.token.role === 'admin'",
-      // Rule 4: ONLY users with the 'admin' claim can modify configurations.
       ".write": "auth != null && auth.token.role === 'admin'"
     },
 
-    // --- Public/Unauthenticated Read Access ---
     "public_posts": {
-      // Rule 5: Any user (authenticated or not) can read public posts.
       ".read": true,
-      // Rule 6: Only authenticated users can create new posts.
       ".write": "auth != null"
     }
   }
